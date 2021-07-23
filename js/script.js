@@ -33,15 +33,15 @@ function setBackground() {
     hours = today.getHours();
 
   if (hours < 12) {
-    document.body.style.backgroundImage = "url('../images/morning.jpg')";
+    document.body.style.backgroundImage = "url('../Javascript-Landing-Pages/images/morning.jpg')";
     document.body.style.backgroundSize = 'cover';
     greeting.textContent = 'Good Morning';
   } else if (hours < 18) {
-    document.body.style.backgroundImage = "url('../images/afternoon.jpg')";
+    document.body.style.backgroundImage = "url('../Javascript-Landing-Pages/images/afternoon.jpg')";
     document.body.style.backgroundSize = 'cover';
     greeting.textContent = 'Good Afternoon';
   } else {
-    document.body.style.backgroundImage = "url('../images/night.jpg')";
+    document.body.style.backgroundImage = "url('../Javascript-Landing-Pages/images/night.jpg')";
     document.body.style.backgroundSize = 'cover';
     greeting.textContent = 'Good Evening';
     document.body.style.color = 'white';
