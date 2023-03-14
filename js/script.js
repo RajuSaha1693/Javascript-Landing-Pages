@@ -89,3 +89,264 @@ showTime();
 setBackground();
 getName();
 getFocus();
+
+
+//Mocks Comment
+function mockFetch(url, options) {
+    return new Promise((resolve, reject) => {
+      // You can customize the response based on the URL and options if needed
+      if (url === '/api/users' && options.method === 'GET') {
+        const data = {
+          users: [
+            { id: 1, name: 'John Doe' },
+            { id: 2, name: 'Jane Smith' }
+          ]
+        };
+        const headers = new Headers({ 'X-Custom-Header': 'foo' });
+        const status = 200;
+        const response = new Response(JSON.stringify(data), { headers, status });
+        resolve(response);
+      } else {
+        reject(new Error(`Invalid URL or options: ${url} ${JSON.stringify(options)}`));
+      }
+    });
+  }
+
+  mockFetch('/api/users', { method: 'GET' })
+  .then(response => {
+    console.log(response.headers.get('X-Custom-Header')); // Output: foo
+    console.log(response.status); // Output: 200
+    return response.json();
+  })
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
+
+
+  function mockFetch(url, options) {
+    return new Promise((resolve, reject) => {
+      // You can customize the response based on the URL and options if needed
+      if (url.startsWith('/api/users') && options.method === 'GET') {
+        const searchParams = new URLSearchParams(url.slice('/api/users'.length));
+        const id = searchParams.get('id');
+        const data = id
+          ? { id, name: `User ${id}` }
+          : { users: [
+              { id: 1, name: 'John Doe' },
+              { id: 2, name: 'Jane Smith' }
+            ]
+          };
+        const headers = new Headers({ 'X-Custom-Header': 'foo' });
+        const status = 200;
+        const response = new Response(JSON.stringify(data), { headers, status });
+        resolve(response);
+      } else {
+        reject(new Error(`Invalid URL or options: ${url} ${JSON.stringify(options)}`));
+      }
+    });
+  }
+
+  
+  mockFetch('/api/users?id=1', { method: 'GET' })
+  .then(response => {
+    console.log(response.headers.get('X-Custom-Header')); // Output: foo
+    console.log(response.status); // Output: 200
+    return response.json();
+  })
+  .then(data => console.log(data))
+  .catch(error => console.error(error));
+
+
+  function mockFetch(url, options) {
+    return new Promise((resolve, reject) => {
+      // You can customize the response based on the URL and options if needed
+      if (url.startsWith('/api/users') && options.method === 'GET') {
+        const searchParams = new URLSearchParams(url.slice('/api/users'.length));
+        const id = searchParams.get('id');
+        const data = id
+          ? { id, name: `User ${id}` }
+          : { users: [
+              { id: 1, name: 'John Doe' },
+              { id: 2, name: 'Jane Smith' }
+            ]
+          };
+        const headers = new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer myToken'
+        });
+        const status = 200;
+        const response = new Response(JSON.stringify(data), { headers, status });
+        resolve(response);
+      } else {
+        reject(new Error(`Invalid URL or options: ${url} ${JSON.stringify(options)}`));
+      }
+    });
+  }
+
+  
+  mockFetch('/api/users?id=1', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer myToken'
+    }
+  })
+    .then(response => {
+      console.log(response.headers.get('Content-Type')); // Output: application/json
+      console.log(response.headers.get('Authorization')); // Output: Bearer myToken
+      console.log(response.status); // Output: 200
+      return response.json();
+    })
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+
+    
+
+    function mockFetch(url, options) {
+        return new Promise((resolve, reject) => {
+          // You can customize the response based on the URL and options if needed
+          if (url.startsWith('/api/users') && options.method === 'GET') {
+            const searchParams = new URLSearchParams(url.slice('/api/users'.length));
+            const id = searchParams.get('id');
+            const authToken = options.headers.get('Authorization');
+            if (authToken !== 'Bearer myToken') {
+              reject(new Error('Invalid Authorization token'));
+              return;
+            }
+            const data = id
+              ? { id, name: `User ${id}` }
+              : { users: [
+                  { id: 1, name: 'John Doe' },
+                  { id: 2, name: 'Jane Smith' }
+                ]
+              };
+            const headers = new Headers({
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer myToken'
+            });
+            const status = 200;
+            const response = new Response(JSON.stringify(data), { headers, status });
+            resolve(response);
+          } else {
+            reject(new Error(`Invalid URL or options: ${url} ${JSON.stringify(options)}`));
+          }
+        });
+      }
+
+      
+      ///Again
+
+      function mockFetch(url, options) {
+        return new Promise((resolve, reject) => {
+          // You can customize the response based on the URL and options if needed
+          if (url.startsWith('/api/users') && options.method === 'GET') {
+            const searchParams = new URLSearchParams(url.slice('/api/users'.length));
+            const id = searchParams.get('id');
+            const authToken = options.headers.get('Authorization');
+            
+            if (authToken !== 'myToken') {
+              const error = new Error('Invalid Authorization token');
+              error.status = 401;
+              reject(error);
+              return;
+            }
+            
+            const data = id
+              ? { id, name: `User ${id}` }
+              : { users: [
+                  { id: 1, name: 'John Doe' },
+                  { id: 2, name: 'Jane Smith' }
+                ]
+              };
+            const headers = new Headers({
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer myToken'
+            });
+            const status = 200;
+            const response = new Response(JSON.stringify(data), { headers, status });
+            resolve(response);
+          } else {
+            reject(new Error(`Invalid URL or options: ${url} ${JSON.stringify(options)}`));
+          }
+        });
+      }
+
+      
+      mockFetch('/api/users?id=1', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer myToken'
+        }
+      })
+        .then(response => {
+          console.log(response.headers.get('Content-Type')); // Output: application/json
+          console.log(response.headers.get('Authorization')); // Output: Bearer myToken
+          console.log(response.status); // Output: 200
+          return response.json();
+        })
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+
+        
+//Again
+function mockFetch(url, options) {
+    return new Promise((resolve, reject) => {
+      // You can customize the response based on the URL and options if needed
+      if (url.startsWith('/api/users') && options.method === 'GET') {
+        const searchParams = new URLSearchParams(url.slice('/api/users'.length));
+        const id = searchParams.get('id');
+        const name = searchParams.get('name');
+        const authToken = options.headers.get('Authorization');
+        
+        if (authToken !== 'myToken') {
+          const error = new Error('Invalid Authorization token');
+          error.status = 401;
+          reject(error);
+          return;
+        }
+        
+        let data = [
+          { id: 1, name: 'John Doe' },
+          { id: 2, name: 'Jane Smith' },
+          { id: 3, name: 'Bob Johnson' }
+        ];
+        
+        if (id) {
+          data = data.filter(user => user.id === Number(id));
+        }
+        
+        if (name) {
+          data = data.filter(user => user.name.toLowerCase().includes(name.toLowerCase()));
+        }
+        
+        const headers = new Headers({
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer myToken'
+        });
+        const status = 200;
+        const response = new Response(JSON.stringify({ users: data }), { headers, status });
+        resolve(response);
+      } else {
+        reject(new Error(`Invalid URL or options: ${url} ${JSON.stringify(options)}`));
+      }
+    });
+  }
+
+  
+  mockFetch('/api/users?id=1&name=doe', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer myToken'
+    }
+  })
+    .then(response => {
+      console.log(response.headers.get('Content-Type')); // Output: application/json
+      console.log(response.headers.get('Authorization')); // Output: Bearer myToken
+      console.log(response.status); // Output: 200
+      return response.json();
+    })
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+  
+
